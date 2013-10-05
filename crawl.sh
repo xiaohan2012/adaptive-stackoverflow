@@ -1,7 +1,14 @@
-#!/bin/sh
-while read line; do
-  args="$args -H  '$line' ";
-done
+#!/bin/bash
 
-curl $args http://stackoverflow.com | grep python | wc -l
-#echo "curl  $args http://stackoverflow.com" 
+while read line
+do
+    echo $line
+    args+=" -H  \"$line\"";
+done < headers/hxiao
+
+cookie=$(cat cookies/hxiao)
+
+cmd="curl $args -b '$cookie' http://stackoverflow.com"
+
+echo $(eval "$cmd")
+
