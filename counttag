@@ -1,0 +1,23 @@
+#!/bin/python
+from simplejson import loads, dumps
+
+def count_tag(qs, tag):
+    """
+    >>> qs = [{"tags": ['a', 'b']}, {"tags": ['a']}]
+    >>> print count_tag(qs, 'a')
+    2
+    >>> print count_tag(qs, 'b')
+    1
+    """
+    return len( [q for q in qs if tag in q["tags"]] )
+
+def count_tag_shell():
+    import sys
+    content = sys.stdin.read()
+    tag = sys.argv[1]
+
+    from simplejson import loads
+    print count_tag(loads(content), tag)
+
+if __name__ == '__main__':
+    count_tag_shell()
