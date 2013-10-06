@@ -1,3 +1,5 @@
+#!/bin/python
+
 from util import dump_qs
 
 if __name__ == '__main__':
