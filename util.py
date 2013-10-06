@@ -1,4 +1,5 @@
-from simplejson import load
+from simplejson import load, dumps
+
 from codecs import open
 
 def loadjson(path):
@@ -35,27 +36,8 @@ def getqs(string):
 
     return map(aux, pq(string).find(".question-summary"))
 
-def count_tag(qs, tag):
-    """
-    >>> qs = [{"tags": ['a', 'b']}, {"tags": ['a']}]
-    >>> print count_tag(qs, 'a')
-    2
-    >>> print count_tag(qs, 'b')
-    1
-    """
-    return len( [q for q in qs if tag in q["tags"]] )
-
-def count_tag_shell():
-    import sys
-    path = sys.argv[1]
-    tag = sys.argv[2]
-
-    from simplejson import loads
-    print count_tag(load(open(path, "r")), tag)
-    
 def dump_qs():
     import sys
-    from simplejson import dumps
     
     content = sys.stdin.read()
     qs = getqs(content)
@@ -67,5 +49,4 @@ def test():
     doctest.testmod()
     
 if __name__ == '__main__':
-    #test()
-    count_tag_shell()
+    test()
