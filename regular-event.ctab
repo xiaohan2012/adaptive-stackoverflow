@@ -1,0 +1,1 @@
+0,20,40 * * * *  /home/xiaohan/homework/adaptive-info-sys/stackoverflow/crawljson.sh > regular-event.log
