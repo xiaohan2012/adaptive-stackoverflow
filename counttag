@@ -19,5 +19,24 @@ def count_tag_shell():
     from simplejson import loads
     print count_tag(loads(content), tag)
 
+def tag_freq(qs):
+    """
+    >>> from util import loadjson
+    >>> qs = loadjson("qlist.hxiao")
+    >>> freq = tag_freq(qs)
+    >>> freq['python']
+    22
+    """
+    from collections import Counter
+    return Counter([tag for q in qs for tag in q["tags"]])
+
+def test():
+    import doctest
+    doctest.testmod()
+    
 if __name__ == '__main__':
-    count_tag_shell()
+    test()
+
+if __name__ == '__main__':
+    #count_tag_shell()
+    test()
