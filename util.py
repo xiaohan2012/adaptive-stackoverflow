@@ -22,6 +22,8 @@ def getqs(string):
     /questions/19198839/how-to-add-text-link-inside-a-div-using-jquery
     >>> print q["tags"]
     ['javascript', 'jquery', 'div', 'href']
+    >>> print q["ctime"]
+    2013-10-05 14:32:24Z
     """
 
     from pyquery import PyQuery as pq
@@ -31,7 +33,8 @@ def getqs(string):
         return {
             "url": q.find("a.question-hyperlink").eq(0).attr("href"),
             "title": q.find("a.question-hyperlink").eq(0).text(),
-            "tags" : map(lambda t: pq(t).text(), q.find(".tags a.post-tag"))
+            "tags" : map(lambda t: pq(t).text(), q.find(".tags a.post-tag")),
+            "ctime": q.find(".started span.relativetime").eq(0).attr("title"),
         }
 
     return map(aux, pq(string).find(".question-summary"))
