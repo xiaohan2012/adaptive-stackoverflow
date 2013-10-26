@@ -1,4 +1,5 @@
-#!/bin/python
+#! /usr/bin/python2.7
+
 from simplejson import loads, dumps
 
 def count_tag(qs, tag):
